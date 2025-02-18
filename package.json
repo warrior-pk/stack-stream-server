@@ -1,0 +1,16 @@
+{
+  "name": "stack-sphere",
+  "private": true,
+  "workspaces": [
+    "core-service",
+    "upload-service"
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3"
+  },
+  "scripts": {
+    "prepare": "husky"
+  }
+}
