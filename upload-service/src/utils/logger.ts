@@ -1,5 +1,19 @@
-import { createLogger, format, transports } from "winston";
+import winston, { createLogger, format, transports } from "winston";
 const { combine, timestamp, json, colorize, printf } = format;
+
+// Define custom colors for log levels
+const customColors = {
+  error: 'red',
+  warn: 'yellow',
+  info: 'green',
+  http: 'magenta',
+  verbose: 'cyan',
+  debug: 'blue',
+  silly: 'gray'
+};
+
+// Apply custom colors to winston
+winston.addColors(customColors);
 
 // Include metadata in the final console output
 const consoleLogFormat = combine(
