@@ -3,4 +3,4 @@ WORKDIR /app
 COPY . .
 RUN bun install
 CMD ["bun", "run", "dev"]
-EXPOSE 9100
+EXPOSE 9200

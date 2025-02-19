@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=builder /app/dist ./dist
 
 # Expose the port the app runs on
-EXPOSE 9100
+EXPOSE 9200
 
 # Command to run the application from the dist folder (adjust the startup command as necessary)
 CMD ["bun", "run", "dist/index.js"]
