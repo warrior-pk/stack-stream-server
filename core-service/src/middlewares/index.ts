@@ -1,2 +1,2 @@
-import { protect } from './auth.middleware'
-export { protect }
+import { verifyWebhook } from './webhook.middleware'
+export { verifyWebhook }
