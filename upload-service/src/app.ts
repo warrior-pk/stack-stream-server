@@ -1,11 +1,11 @@
-import type { NextFunction, Request, Response } from "express";
+import type { Request, Response } from "express";
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { ApiResponse, ApiError } from "./utils";
-import { HTTP_STATUS } from "./constants";
-import { v1 } from "./routes";
-import { logger } from "./utils";
+import { ApiResponse, ApiError } from "@/utils";
+import { HTTP_STATUS } from "@/constants";
+import { v1 } from "@/routes";
+import { logger } from "@/utils";
 import morgan from "morgan";
 
 const morganFormat = ":method :url :status :response-time ms";
@@ -57,7 +57,7 @@ app.get("/health", (req: Request, res: Response): void => {
 });
 
 app.get("/favicon.ico", (req: Request, res: Response): void => {
-  res.status(HTTP_STATUS.NO_CONTENT).send();
+  res.sendFile("favicon.ico", { root: "static" });
 });
 
 app.use("*", (req: Request, res: Response): void => {

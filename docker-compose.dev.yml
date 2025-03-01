@@ -23,6 +23,30 @@ services:
     networks:
       - stack_sphere_network
 
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_DATABASE: "stack-sphere"
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "password"
+    volumes:
+      - ./db/mongodb/db_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - stack_sphere_network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    volumes:
+      - ./db/redis/db_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - stack_sphere_network
+
   api-gateway:
     container_name: api-gateway
     build:
@@ -42,25 +66,31 @@ services:
       dockerfile: Dockerfile.dev
     depends_on:
       - kafka
+      - api-gateway
     restart: always
-    ports:
-      - "9100:9100"
     networks:
       - stack_sphere_network
+    volumes:
+      - ./core-service:/app
+      - /app/node_modules
+    command: ["bun", "dev"]
 
   upload-service:
     container_name: upload-service
-    env_file: ./upload-service/.env # Fixed `env_file`
+    env_file: ./upload-service/.env
     build:
       context: ./upload-service
       dockerfile: Dockerfile.dev
     depends_on:
       - kafka
+      - api-gateway
     restart: always
-    ports:
-      - "9200:9200"
     networks:
       - stack_sphere_network
+    volumes:
+      - ./upload-service:/app
+      - /app/node_modules
+    command: ["bun", "dev"]
 
 networks:
   stack_sphere_network:

@@ -1,5 +1,6 @@
 FROM oven/bun:alpine
 WORKDIR /app
+COPY package.json ./
 COPY . .
 RUN bun install
 CMD ["bun", "run", "dev"]

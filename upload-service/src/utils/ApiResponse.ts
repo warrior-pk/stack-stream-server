@@ -19,6 +19,18 @@ class ApiResponse<T> {
     this.message = message;
     this.data = data;
   }
+
+  /**
+   * Custom toJSON method to include the success property in the JSON response.
+   */
+  toJSON() {
+    return {
+      statusCode: this.statusCode,
+      message: this.message,
+      data: this.data,
+      success: this.success,
+    };
+  }
 }
 
 export { ApiResponse };

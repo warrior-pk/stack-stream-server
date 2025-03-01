@@ -1,5 +1,5 @@
-import { asyncHandler, ApiError, ApiResponse, logger } from "../../utils";
-import { HTTP_STATUS } from "../../constants";
+import { asyncHandler, ApiError, ApiResponse, logger } from "@/utils";
+import { HTTP_STATUS } from "@/constants";
 import type { Request, Response } from "express";
 import {
   S3Client,
@@ -44,7 +44,7 @@ export const initializeUpload = asyncHandler(
     const hasher = new Bun.CryptoHasher("md5");
     hasher.update(filename);
     const hashedFilename = hasher.digest("hex");
-    const videokey = `${contentType}/${hashedFilename}.${fileExtension}`;
+    const videokey = `${contentType}/${hashedFilename}/master.${fileExtension || ""}`;
 
     const input = {
       Bucket: Bun.env.S3_BUCKET_NAME,
@@ -132,5 +132,14 @@ export const completeUpload = asyncHandler(
       .json(
         new ApiResponse(HTTP_STATUS.OK, "upload completed", { videoUrl })
       );
+  }
+);
+
+
+export const pushVideoForEncoding = asyncHandler(
+  async () => {
+
+
+
   }
 );

@@ -10,6 +10,7 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 .vscode
+app.log
 # Caches
 
 .cache
@@ -173,3 +174,10 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
+
+# Ignore database data directories
+db/mongodb/db_data/
+db/redis/db_data/
+
+# Ignore server logs
+logs/

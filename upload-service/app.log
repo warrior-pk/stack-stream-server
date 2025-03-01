@@ -48,3 +48,38 @@
 {"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-19T21:12:04.599Z"}
 {"arr":[1,2,3],"buffer":{"data":[116,101,115,116],"type":"Buffer"},"level":"\u001b[34mdebug\u001b[39m","message":"Debug data","obj":{"foo":"bar"},"timestamp":"2025-02-19T21:12:10.252Z"}
 {"level":"\u001b[35mhttp\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/api/v1/upload/health\",\"status\":\"304\",\"responseTime\":\"10.380\"}","timestamp":"2025-02-19T21:12:10.259Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-19T21:18:21.733Z"}
+{"arr":[1,2,3],"buffer":{"data":[116,101,115,116],"type":"Buffer"},"level":"\u001b[34mdebug\u001b[39m","message":"Debug data","obj":{"foo":"bar"},"timestamp":"2025-02-19T21:18:27.566Z"}
+{"level":"\u001b[35mhttp\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/api/v1/upload/health\",\"status\":\"\\u001b[36m304\\u001b[0m\",\"responseTime\":\"8.208\"}","timestamp":"2025-02-19T21:18:27.571Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-19T21:18:43.805Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-19T21:23:50.855Z"}
+{"arr":[1,2,3],"buffer":{"data":[116,101,115,116],"type":"Buffer"},"level":"\u001b[34mdebug\u001b[39m","message":"Debug data","obj":{"foo":"bar"},"timestamp":"2025-02-19T21:24:03.489Z"}
+{"level":"\u001b[35mhttp\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/api/v1/upload/health\",\"status\":\"304\",\"responseTime\":\"6.731\"}","timestamp":"2025-02-19T21:24:03.493Z"}
+{"arr":[1,2,3],"buffer":{"data":[116,101,115,116],"type":"Buffer"},"level":"\u001b[34mdebug\u001b[39m","message":"Debug data","obj":{"foo":"bar"},"timestamp":"2025-02-19T21:26:50.062Z"}
+{"level":"\u001b[35mhttp\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/api/v1/upload/health\",\"status\":\"200\",\"responseTime\":\"2.835\"}","timestamp":"2025-02-19T21:26:50.064Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-19T21:31:23.447Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-19T21:31:30.951Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-19T21:31:36.337Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-19T21:31:41.915Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-19T21:32:29.037Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-19T21:33:08.156Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-27T17:13:20.447Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-28T19:52:19.345Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-28T19:56:23.550Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-28T19:59:48.674Z"}
+{"arr":[1,2,3],"buffer":{"data":[116,101,115,116],"type":"Buffer"},"level":"\u001b[34mdebug\u001b[39m","message":"Debug data","obj":{"foo":"bar"},"timestamp":"2025-02-28T20:05:06.579Z"}
+{"level":"\u001b[35mhttp\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/api/v1/upload/health\",\"status\":\"200\",\"responseTime\":\"10.744\"}","timestamp":"2025-02-28T20:05:06.586Z"}
+{"arr":[1,2,3],"buffer":{"data":[116,101,115,116],"type":"Buffer"},"level":"\u001b[34mdebug\u001b[39m","message":"Debug data","obj":{"foo":"bar"},"timestamp":"2025-02-28T20:07:33.380Z"}
+{"level":"\u001b[35mhttp\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/api/v1/upload/health\",\"status\":\"304\",\"responseTime\":\"3.790\"}","timestamp":"2025-02-28T20:07:33.383Z"}
+{"level":"\u001b[35mhttp\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/api/v1/upload\",\"status\":\"404\",\"responseTime\":\"2.458\"}","timestamp":"2025-02-28T20:11:16.288Z"}
+{"arr":[1,2,3],"buffer":{"data":[116,101,115,116],"type":"Buffer"},"level":"\u001b[34mdebug\u001b[39m","message":"Debug data","obj":{"foo":"bar"},"timestamp":"2025-02-28T20:20:29.327Z"}
+{"level":"\u001b[35mhttp\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/api/v1/upload/health\",\"status\":\"200\",\"responseTime\":\"3.249\"}","timestamp":"2025-02-28T20:20:29.329Z"}
+{"arr":[1,2,3],"buffer":{"data":[116,101,115,116],"type":"Buffer"},"level":"\u001b[34mdebug\u001b[39m","message":"Debug data","obj":{"foo":"bar"},"timestamp":"2025-02-28T20:33:32.990Z"}
+{"level":"\u001b[35mhttp\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/api/v1/upload/health\",\"status\":\"304\",\"responseTime\":\"2.183\"}","timestamp":"2025-02-28T20:33:32.992Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-28T20:34:22.076Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-28T20:47:43.993Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-28T21:19:39.749Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-28T22:14:17.809Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-02-28T23:05:38.229Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-03-01T00:00:02.076Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Server running on port 9200","timestamp":"2025-03-01T00:19:10.184Z"}

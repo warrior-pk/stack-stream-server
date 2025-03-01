@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { ApiResponse, logger } from "../../utils";
-import { HTTP_STATUS } from "../../constants";
+import { ApiResponse, logger } from "@/utils";
+import { HTTP_STATUS } from "@/constants";
 import multer from "multer";
-import { uploadToS3 } from "../../controllers/v1";
+import { uploadToS3 } from "@/controllers/v1";
 const router = Router();
 const uploadVideo = multer();
 
