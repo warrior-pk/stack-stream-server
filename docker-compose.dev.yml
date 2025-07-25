@@ -33,7 +33,7 @@ services:
     volumes:
       - ./db/mongodb/db_data:/data/db
     ports:
-      - "27017:27017"
+      - "27018:27017"
     networks:
       - stack_sphere_network
 
@@ -43,7 +43,7 @@ services:
     volumes:
       - ./db/redis/db_data:/data
     ports:
-      - "6379:6379"
+      - "6380:6379"
     networks:
       - stack_sphere_network
 
@@ -52,6 +52,9 @@ services:
     build:
       context: ./api-gateway
       dockerfile: Dockerfile.dev
+    depends_on:
+      - core-service
+      - upload-service
     restart: always
     ports:
       - "9000:80"
@@ -66,7 +69,7 @@ services:
       dockerfile: Dockerfile.dev
     depends_on:
       - kafka
-      - api-gateway
+      - mongodb
     restart: always
     networks:
       - stack_sphere_network
@@ -83,7 +86,6 @@ services:
       dockerfile: Dockerfile.dev
     depends_on:
       - kafka
-      - api-gateway
     restart: always
     networks:
       - stack_sphere_network
