@@ -10,6 +10,8 @@ import {
   GetObjectCommand
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { randomUUID } from "crypto";
+import KafkaConfig from "@/configs/kafka";
 
 const region = Bun.env.S3_REGION;
 if (!region) {
@@ -40,11 +42,8 @@ export const initializeUpload = asyncHandler(
   async (req: Request, res: Response) => {
     logger.info("Initializing upload...");
     const { filename, contentType, fileExtension } = req.body;
-
-    const hasher = new Bun.CryptoHasher("md5");
-    hasher.update(filename);
-    const hashedFilename = hasher.digest("hex");
-    const videokey = `${contentType}/${hashedFilename}/master.${fileExtension || ""}`;
+    const videoId = randomUUID();
+    const videokey = `${contentType}/${videoId}/master.${fileExtension || ""}`;
 
     const input = {
       Bucket: Bun.env.S3_BUCKET_NAME,
@@ -59,6 +58,7 @@ export const initializeUpload = asyncHandler(
       new ApiResponse(HTTP_STATUS.OK, "upload initialized", {
         uploadId: data.UploadId,
         videoKey: videokey,
+        videoId: videoId
       })
     );
   }
@@ -66,7 +66,7 @@ export const initializeUpload = asyncHandler(
 
 export const uploadChunk = asyncHandler(async (req: Request, res: Response) => {
   logger.info("Uploading chunk...");
-  const { filename, chunkNumber, uploadId } = req.body;
+  const { videoKey, chunkNumber, uploadId } = req.body;
 
   const chunk = req.file;
   if (!chunk) {
@@ -75,7 +75,7 @@ export const uploadChunk = asyncHandler(async (req: Request, res: Response) => {
 
   const input = {
     Bucket: Bun.env.S3_BUCKET_NAME,
-    Key: filename,
+    Key: videoKey,
     UploadId: uploadId,
     PartNumber: chunkNumber,
     Body: chunk.buffer,
@@ -90,11 +90,11 @@ export const uploadChunk = asyncHandler(async (req: Request, res: Response) => {
 export const completeUpload = asyncHandler(
   async (req: Request, res: Response) => {
     logger.info("Completing upload...");
-    const { filename, uploadId } = req.body;
+    const { videoKey, uploadId } = req.body;
 
     const input = {
       Bucket: Bun.env.S3_BUCKET_NAME,
-      Key: filename,
+      Key: videoKey,
       UploadId: uploadId,
     };
     const command = new ListPartsCommand(input);
@@ -111,7 +111,7 @@ export const completeUpload = asyncHandler(
 
     const completeInput = {
       Bucket: Bun.env.S3_BUCKET_NAME,
-      Key: filename,
+      Key: videoKey,
       UploadId: uploadId,
       MultipartUpload: {
         Parts: parts,
@@ -123,23 +123,35 @@ export const completeUpload = asyncHandler(
 
     const getObjectInput = {
       "Bucket": Bun.env.S3_BUCKET_NAME,
-      "Key": filename
+      "Key": videoKey
     }
     const videoUrl = await getSignedUrl(client, new GetObjectCommand(getObjectInput), { expiresIn: 24 * 60 * 60 });
     logger.info("Upload completed ------------------", videoUrl);
+
+    pushVideoForEncoding(videoKey);
     res
       .status(200)
       .json(
-        new ApiResponse(HTTP_STATUS.OK, "upload completed", { videoUrl })
+        new ApiResponse(HTTP_STATUS.OK, "upload completed", { videoUrl, videoId: videoKey.split('/')[1] })
       );
   }
 );
 
 
-export const pushVideoForEncoding = asyncHandler(
-  async () => {
-
-
-
-  }
-);
+export const pushVideoForEncoding = async (videoKey) => {
+  const kafka = new KafkaConfig();
+  await kafka.produce(
+    "video-encoding",
+    [
+      {
+          key: videoKey,
+          value: JSON.stringify({
+            videoId: videoKey.split('/')[1],
+            videoKey: videoKey,
+            outputFormats: ["1080p", "720p", "480p", "360p"],
+          }),
+        },
+      ]
+  );
+  await kafka.disconnect();
+};
